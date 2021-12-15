@@ -1,3 +1,16 @@
-# To Do List App Using Django
+# Project Website Using Django
 
 * Feature Only Using Django Request & Respons
+
+DOCS :
+
+1. Make sure install Python
+2. Install PIP
+3. Create Virtual Environment
+4. install Package Django
+5. Create Project ( WEBSITE )
+6. Check Django server
+7. Running database migration
+8. Running Django Server
+9. Create App ( TODO LIST )
+10. 
