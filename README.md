@@ -1,6 +1,7 @@
 # Project Website Using Django
 
 DOCS :
+
 ========== Setup Project & App ==========
 
 1. Make sure install Python
