@@ -2,8 +2,7 @@
 
 DOCS :
 
-                             ========== Setup Project & App ==========
-![1](https://user-images.githubusercontent.com/64148241/146126832-6c35d3c1-44cd-410b-b490-225373f32d3e.png)
+========== Setup Project & App ==========
 1. Make sure install Python
 2. Install PIP
 3. Create Virtual Environment
