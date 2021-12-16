@@ -14,6 +14,7 @@ DOCS :
 9. Create App ( TODO LIST ) "./manage.py startapp todo"
 
 ========== Setting Urls & Views ==========
+
 Connect Todo List Application to server 
 1. in views.py Create function index for request Response Http
 2. Create file urls.py
