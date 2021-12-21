@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'todo.apps.TodoConfig', # add apps todo #TodoConfig is from apps.py in todo apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
