@@ -22,28 +22,34 @@
 
         <section class="main">
             <ul class="todo-list">
-                <li class="completed">
-                    <div class="view">
-                        <form method="POST" action="">
-                            <input name="status" class="toggle" type="checkbox" checked">
-                            <label> Taste Javascript </label>
-                            <a href="{% url 'delete' 10 %}" class="destroy"></a>
-                        </form>
-                    </div>
-                </li>
+
+                {% if items %}
+                    {% for item in items %}
+                    <li {% if item.status %} class="completed" {% endif %}>
+                        <div class="view">
+                            <form method="POST" action="">
+                                <input name="status" class="toggle" type="checkbox" {% if item.status %} checked {% endif %}">
+                                <label> {{ item.title }} </label>
+                                <a href="{% url 'delete' 10 %}" class="destroy"></a>
+                            </form>
+                        </div>
+                    </li>
+                    {% endfor %}
+                {% endif %}
+
             </ul>
         </section>
 
         <footer class="footer">
             <ul class="filters">
                 <li>
-                    <a class="selected" href="{% url 'index' %}"> All </a>
+                    <a {% if request.path == '/todo/' %} class="selected" {% endif %} href="{% url 'index' %}"> All </a>
                 </li>
                 <li>
-                    <a class="selected" href="{% url 'done' %}"> Done </a>
+                    <a {% if request.path == '/todo/done/' %} class="selected" {% endif %} href="{% url 'done' %}"> Done </a>
                 </li>
                 <li>
-                    <a class="selected" href="{% url 'pending' %}"> Pending </a>
+                    <a {% if request.path == '/todo/pending/' %} class="selected" {% endif %} href="{% url 'pending' %}"> Pending </a>
                 </li>
             </ul>
             <a href="{% url 'delete_all' %}" class="clear-completed"> Delete All </a>
