@@ -6,12 +6,12 @@ DOCS :
 1. Make sure install Python
 2. Install PIP
 3. Create Virtual Environment
-4. install Package Django "PIP install django"
-5. Create Project ( **WEBSITE** ) "django-admin startproject website"
+4. install Package Django ```pip install django```
+5. Create Project ( **WEBSITE** ) ```django-admin startproject website```
 6. Check Django server 
 7. Running database migration
-8. Running Django Server "./manage.py runserver"
-9. Create App ( TODO LIST ) "./manage.py startapp todo"
+8. Running Django Server ```./manage.py runserver```
+9. Create App ( TODO LIST ) ```./manage.py startapp todo```
 
 ========== Setting Urls & Views ==========
 
@@ -22,7 +22,7 @@ Connect Todo List Application to server
 4. views.py and urls.py in (Todo List Application) supposed to be conected
 5. Connect to (Project Website)urls.py
 6. in urls.py(Project Website), Import urls.py(Todo List Application)
-7. Running Django Server "./manage.py runserver" 
+7. Running Django Server ```./manage.py runserver```
 8. urls/(Todo List Application)
 
 ========== Setting Templates & Static Files ==========
@@ -30,12 +30,12 @@ Connect Todo List Application to server
 Templates (file .html)
 static    (file .css .js)
 1. You need template and static file, you can download from internet or you can build you're own.
-2. File templates you can put inside folder "templates/todo/(yourfileTemplate)" in you're (Todo List Application)
+2. File templates you can put inside folder ```templates/todo/(yourfileTemplate)``` in you're (Todo List Application)
 3. in views.py(Todo List Application), you need change to request render with you're templates file
-4. in setting.py(Project Website) you need register you're template file in |INSTALLED_APPS|    
-5. File static you can put inside folder "static/todo/css/(yourfileTemplate)" in you're (Todo List Application)
-6. in setting.py(Project Website) you will find |STATIC_URL = 'static/'|
-7. We need call static file in templates file with (Template static --> {% load static %}) for setting static file in templates files
+4. in setting.py(Project Website) you need register you're template file in ```INSTALLED_APPS```  
+5. File static you can put inside folder ```static/todo/css/(yourfileTemplate)``` in you're (Todo List Application)
+6. in setting.py(Project Website) you will find ```STATIC_URL = 'static/' ```
+7. We need call static file in templates file with (Template static --> ```{% load static %}```) for setting static file in templates files
 8. in views.py(Todo List Application)
     1. Register function done
     2. Register function pending
