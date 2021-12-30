@@ -54,3 +54,46 @@ static    (file .css .js)
     ```
     {% url '(name from urls)' %}
     ```
+
+========== Django MODELS ==========
+
+" Table Database == Model Databases. "
+
+We need Field and Columns.
+1. Title (Text)
+2. Status (Boolean)
+
+Declare Models.
+1. in models.py(Todo List Application), we only need saving data TodoApps.
+2. Create Models in the form of ```class Todo```
+3. Models is ready
+
+We need create Database.
+- In Django have concept ```Database Migration``` as noted(like update version) 
+
+1. Create file Migration ```./manage.py makemigrations``` Output : folder migrations(Todo List Application) > ```0001.initial.py```
+2. Access models in terminal
+3. Activate shell django ```./manage.py shell```
+4. Import models ```from todo.models import Todo```
+5. Check All Table Database todo ```Todo.objects.all()``` 
+6. Create todo content ```id = nameClassinModels(parameter)```
+7. Save data content to database ```id.save()```
+8. Check All Table Database todo ```Todo.objects.all()``` Output : ```<QuerySet [ <Todo: Todo object (1)> , <Todo: Todo object (2)> ]>```
+9. Convert Ouput from type >>> id to string
+   - in models.py(Todo List Application), create function with method string ```def ___str___(self)```
+   - Output will be : ```<QuerySet [ <Todo: id: (string)> , <Todo: id: (string)> ] >```
+10. id = PK (Primary Key)
+11. Check per-ID or PK ``` Todo.objects.get(id=numberid) ```
+12. Update todo content ```id = Todo.objects.get(id=numberid)``` and ```id.namefield = 'updatehere!'``` then save
+13. Update todo content ```Todo(namefield='updatehere!').save()```
+14. Delete todo content ```id.delete```
+15. If you wanna search spesific word use >> Filter data content ```Todo.objects.filter(namefield__startswith='typespesificword')``` 
+16. Sort by id ```Todo.objects.order_by('-id')``` symbol - mean from large to small (OPERATION MODELS we can see at Docs Django)
+
+We need Call from Views.py(Todo List Application).
+1. in views.py (Todo List Application) ```from .models import Todo```
+2. in views.py (Todo List Application) call all items ```items = Todo.objects.all()```
+3. in views.py (Todo List Application) added value for bring in templates ```{'items': items}```
+4. in templates create looping for items in the form of <li>
+5. setting items with descending with ```order by -id```
+6. setting in templates ```selected``` so as every request link can match in Templates(selected) and views.py(path)

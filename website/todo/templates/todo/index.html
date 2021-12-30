@@ -24,7 +24,10 @@
             <ul class="todo-list">
 
                 {% if items %}
-                    {% for item in items %}
+
+                    <!-- LOOPING ITEMS -->
+                
+                    {% for item in items %} 
                     <li {% if item.status %} class="completed" {% endif %}>
                         <div class="view">
                             <form method="POST" action="">
@@ -35,6 +38,7 @@
                         </div>
                     </li>
                     {% endfor %}
+                    
                 {% endif %}
 
             </ul>
