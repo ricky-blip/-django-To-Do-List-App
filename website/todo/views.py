@@ -1,5 +1,7 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, reverse
+# from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+from django.core.exceptions import ObjectDoesNotExist
 
 from .models import Todo
 
@@ -23,17 +25,39 @@ def pending(request):
 
 # function button Delete All
 def delete_all(request):
-    return render(request, 'todo/index.html')
+    Todo.objects.all().delete()
+    return HttpResponseRedirect(reverse('index'))
 
 # ===========================================
 # function button create
 def create(request):
-    return render(request, 'todo/index.html')
+    # return render(request, 'todo/index.html')
+    try:
+        title = request.POST['title']
+        
+        todo = Todo(title=title)
+        todo.save()
+        return HttpResponseRedirect(reverse('index'))
+    except:
+        return HttpResponseRedirect(reverse('index'))
 
 # function button update
 def update(request, id):
-    return render(request, 'todo/index.html')
+    try:
+        todo = Todo.objects.get(id=id)
+        todo.status = not todo.status
+        todo.save()
+        return HttpResponseRedirect(reverse('index'))
+    
+    except ObjectDoesNotExist:
+        return HttpResponseRedirect(reverse('index'))
 
 # function button delete
 def delete(request, id):
-    return render(request, 'todo/index.html')
+    try:
+        todo = Todo.objects.get(id=id)
+        todo.delete()
+        return HttpResponseRedirect(reverse('index'))
+    
+    except ObjectDoesNotExist:
+        return HttpResponseRedirect(reverse('index'))

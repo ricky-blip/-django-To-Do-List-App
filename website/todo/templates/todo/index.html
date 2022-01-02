@@ -15,8 +15,13 @@
 
         <header class="header">
             <h1>ToDo Apps</h1>
-            <form method = "POST" action="">
+            <form method = "POST" action="{% url 'create' %}">
+
+                <!-- Create Items -->
+                {% csrf_token %} 
                 <input class="new-todo" placeholder="What do you do today ?" name="title" autofocus>
+                <!-- Create Items -->
+                
             </form>
         </header>
 
@@ -30,11 +35,19 @@
                     {% for item in items %} 
                     <li {% if item.status %} class="completed" {% endif %}>
                         <div class="view">
-                            <form method="POST" action="">
-                                <input name="status" class="toggle" type="checkbox" {% if item.status %} checked {% endif %}">
+
+                            <form method="POST" action="{% url 'update' item.id %}">
+                                {% csrf_token %} 
+                                <!-- Update Items/Status Items -->
+                                <input name="status" class="toggle" type="checkbox" onclick="this.form.submit()" {% if item.status %} checked {% endif %}">
                                 <label> {{ item.title }} </label>
-                                <a href="{% url 'delete' 10 %}" class="destroy"></a>
+                                <!-- Update Items/Status Items -->
+
+                                <!-- Delete Items -->
+                                <a href="{% url 'delete' item.id %}" class="destroy"></a> 
+                                <!-- Delete Items -->
                             </form>
+
                         </div>
                     </li>
                     {% endfor %}
