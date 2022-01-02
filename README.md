@@ -76,7 +76,7 @@ We need create Database.
 3. Activate shell django ```./manage.py shell```
 4. Import models ```from todo.models import Todo```
 5. Check All Table Database todo ```Todo.objects.all()``` 
-6. Create todo content ```id = nameClassinModels(parameter)```
+6. Create todo content ```id = nameClassinModels(field = 'value')```
 7. Save data content to database ```id.save()```
 8. Check All Table Database todo ```Todo.objects.all()``` Output : ```<QuerySet [ <Todo: Todo object (1)> , <Todo: Todo object (2)> ]>```
 9. Convert Ouput from type >>> id to string
@@ -96,4 +96,46 @@ We need Call from Views.py(Todo List Application).
 3. in views.py (Todo List Application) added value for bring in templates ```{'items': items}```
 4. in templates create looping for items in the form of <li>
 5. setting items with descending with ```order by -id```
-6. setting in templates ```selected``` so as every request link can match in Templates(selected) and views.py(path)
+6. setting in templates ```selected``` so as every request link can match in Templates(selected) and views.py(path) "INDICATOR"
+
+========== FORM and POST request ==========
+
+---DELETE items
+1. in views.py (Todo List Application) 
+    - Button delete require id items
+    - we change delete link in Templates with ```item.id```
+2. We don't need to visit link delete, just only still in ALL link
+3. in views.py (Todo List Application) 
+    - Get ```todo = Todo.objects.get(id=id)```
+    - Delete ```todo.delete()```
+4. We need "Error Handling", if```id```getting nothing is mean = nothing data in database then will be an ERROR
+    - Import django exceptions object does not exist in views.py (Todo List Application)
+    - If Error ```ObjectDoesNotExist```, we must direct to (index/ALL) ```from django.http import HttpResponse``` with return ```return HttpResponseRedirect('/todo/')```
+    - Use```reverse```in views.py(Todo List Application) with path urls.py(Todo List Application) so that keep direct to (index/ALL) ```return HttpResponseRedirect(reverse('index'))```
+
+---CREATE items
+1. in Templates(Todo List Application) 
+    - Setting Templates under header, create FORM for Create Items(new-todo)
+    - Protect FORM with ```{% csrf_token %}``` 
+2. in views.py(Todo List Application) 
+    - Redirect to index(/todo) ```return HttpResponseRedirect(reverse('index'))```
+    - GET DATA INPUT(Handle data input) ```title = request.POST['title']```
+    - Error Handling ```Try Except```
+    - SAVE DATA INPUT ```todo = Todo(title=title)``` ```todo.save()```
+
+---DELETE ALL items 
+1. in views.py(Todo List Application)
+    - GET ALL database and DELETE ```Todo.objects.all().delete()```
+    - Redirect to index(/todo)
+
+---Update items (Status Items)
+1. in Templates(Todo List Application) 
+    - Create Form
+    - Protect FORM with ```{% csrf_token %}```
+2. Need Submit with javascript ``` onclick="this.form.submit()" ```
+    - Mean submit for just This Form, not another FORM
+3. Check Output: must be to url /update
+4. Redirect to index(/todo) ```return HttpResponseRedirect(reverse('index'))```
+5. Error Handling ```Try Except```
+    - Status Uncheck(Pending) <-> Status Check(Not Pending) ``` todo.status = not todo.status ```
+    - save ``` todo.save() ```
