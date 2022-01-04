@@ -139,3 +139,28 @@ We need Call from Views.py(Todo List Application).
 5. Error Handling ```Try Except```
     - Status Uncheck(Pending) <-> Status Check(Not Pending) ``` todo.status = not todo.status ```
     - save ``` todo.save() ```
+
+======================================== DJANGO ADMIN ========================================
+
+---Access Django Admin Project(Website)
+1. in urls.py(Website), we see ```url pattern``` there is url admin ```admin/```
+2. runserver and add /admin
+
+---Create User&Password Django Admin Project(Website)
+1. quit runserver
+2. ```./manage.py createsuperuser```
+3. Create your own (User,Email,Password)
+4. runserver, and try login in django admin
+
+---Register (Todo List Application)
+1. in admin.py(Todo List Application)
+    - Import model ```from .models import Todo```
+    - Register ```admin.site.register(Todo)```
+
+---Customize Django Admin(Todo List Application)
+1. remove interface "id" 
+    - in model.py(Todo List Application),replace (function __str___) to just only show title ```return self.title```
+2. Add in table interface --->  Add Column (id,title,status)
+    - in admin.py(Todo List Application), create class TodoAdmin ```class TodoAdmin(admin.ModelAdmin):``` and display column ```list_display = ('id','title','status')```
+    - register column as parameter ```admin.site.register(Todo,TodoAdmin)```
+

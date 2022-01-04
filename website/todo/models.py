@@ -6,6 +6,7 @@ class Todo(models.Model):
     status = models.BooleanField(default=False) #status is field
     
     def __str__(self):
-        return '%s: %s' % (self.id, self.title)
+        # return '%s: %s' % (self.id, self.title)
+        return self.title
         
         
