@@ -164,3 +164,29 @@ We need Call from Views.py(Todo List Application).
     - in admin.py(Todo List Application), create class TodoAdmin ```class TodoAdmin(admin.ModelAdmin):``` and display column ```list_display = ('id','title','status')```
     - register column as parameter ```admin.site.register(Todo,TodoAdmin)```
 
+======================================== DEPLOY Apps========================================
+
+We have 2 Strategy how to deploy:
+1. Production 1 
+    - Separate Directory Request between (Django ```/*``` and static file ```/static/*```)
+    - First We need Web Server(Apache2 / NGINX)
+    - Configur WebServer, When request "static file" then load to folder "static file", Except Load to "Django"
+    - Django ```/*``` = (BASE_DIR) place for Application we made
+    - static file ```/static/*``` = (STATIC_ROOT) make special directory outside application we made 
+
+2. Production 2
+    - Seperate Django with ```WebServer``` and StaticFile with ```Cloud Storage``` or with CDN
+    - We can Setup Domain Each Other Between Django and StaticFile
+
+
+*** HOW TO SEPARATE static file ***
+    - ```manage.py collectstatic```
+
+1. Setting STATIC_ROOT
+    - in setting.py(Website)
+    - import os
+    - For local ```STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')``` this will be all staticfiles in all active application django will be copy to (/nameProject/staticfiles)
+    - For Production ``` STATIC_ROOT = '/home/yourname/staticfiles' ```
+
+
+
