@@ -164,9 +164,11 @@ We need Call from Views.py(Todo List Application).
     - in admin.py(Todo List Application), create class TodoAdmin ```class TodoAdmin(admin.ModelAdmin):``` and display column ```list_display = ('id','title','status')```
     - register column as parameter ```admin.site.register(Todo,TodoAdmin)```
 
-======================================== DEPLOY Apps========================================
+======================================== DEPLOY Apps ========================================
 
-We have 2 Strategy how to deploy:
+* Django is not for serve staticfiles
+
+We have 2 Strategy how to deploy: 
 1. Production 1 
     - Separate Directory Request between (Django ```/*``` and static file ```/static/*```)
     - First We need Web Server(Apache2 / NGINX)
@@ -188,5 +190,43 @@ We have 2 Strategy how to deploy:
     - For local ```STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')``` this will be all staticfiles in all active application django will be copy to (/nameProject/staticfiles)
     - For Production ``` STATIC_ROOT = '/home/yourname/staticfiles' ```
 
+======================================== Django Setting in Production ========================================
 
+```in setting.py Project(Website)```
 
+- Setting ```SECRET_KEY```
+- Setting ```DEBUG```
+- Setting ```ALLOWED_HOSTS```
+- Setting ```DATABASES```
+
+1. ```SECRET_KEY```
+    - in production we need change this key, because Apps using (Session, Authentication, csrf token)
+    - 
+2. ```DEBUG```
+    - in production must be setup to ```False```, because if setup ```True``` when user access The Apps, then Django will Show Error etc or show related Bugs
+    - 
+3. ```ALLOWED_HOSTS```
+    - if DEBUG setup to ```False```, then Django will request to fill ALLOWED_HOST
+    - list host domain where access to Django
+    - If ALLOWED_HOSTS = ['Domain.com'], then Django only allow access from 'Domain.com'
+4. ```DATABASES```
+    - In Development we can using sqlite(NOT Recommended)
+    - In Production Recommended using MySQL/PostgreSQL
+
+*** For PRODUCTION, we need Place All the Setting(SECRET_KEY,DEBUG,ALLOWED_HOSTS,DATABASES) to Environment Variabel ***
+Environment Variabel Example : in terminal ``` $variable=Value | $echo variable -->> Output: Value ``` 
+
+1. Make sure ```import os``` in setting.py Project(Website)
+2. with module ```os``` we take value from Environment Variabel 
+3. ```SECRET_KEY```
+    - SECRET_KEY = os.environ.get('nameVariable')
+    - add default value ```SECRET_KEY = os.environ.get('nameVariable','=defaultValue Secret_Key')```
+    - Logic --> Secret_Key first looking for Environment 'nameVariabel', if not then defaultValue in Secret_key
+4. ```DEBUG```
+    - We need Value ```False Boolean```
+    - DEBUG = os.environ.get('nameVariable') ==> This is String not Bool
+    - add default value ```DEBUG = os.environ.get('nameVariable','=defaultValue [TRUE]')``` ==> String TRUE
+    - CHANGE TO BOOLEAN ```DEBUG = os.environ.get('nameVariable','=defaultValue [TRUE]') == ['TRUE'] ```
+    - Logic --> we have compare ['TRUE'] == ['TRUE'] ==> VALUE BOOLEAN TRUE
+    - In PRODUCTION We need Value ```False Boolean``` ==> ```DEBUG = FALSE```
+5. 
