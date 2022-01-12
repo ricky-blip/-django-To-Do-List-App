@@ -229,4 +229,24 @@ Environment Variabel Example : in terminal ``` $variable=Value | $echo variable 
     - CHANGE TO BOOLEAN ```DEBUG = os.environ.get('nameVariable','=defaultValue [TRUE]') == ['TRUE'] ```
     - Logic --> we have compare ['TRUE'] == ['TRUE'] ==> VALUE BOOLEAN TRUE
     - In PRODUCTION We need Value ```False Boolean``` ==> ```DEBUG = FALSE```
-5. 
+5.  ```ALLOWED_HOSTS```
+    - After change DEBUG = FALSE, we need ALLOWED_HOST
+    - Value ALLOWED_HOST is ```list []```
+    - ```In Production``` ALLOWED_HOSTS = os.environ.get('nameVariable','=defaultValue' ==> 'IPAddress,Domain')
+    - ```In Develop/local``` ALLOWED_HOSTS = os.environ.get('nameVariable','=defaultValue' ==> '127.0.0.1,localhost').split(',') 
+        *split(',') for separate between host (IpAddres,Domain)
+6. ```DATABASES```
+    - We need change databases in Production to MySQL/PostgreSQL
+    - Install ```pip install dj-database-url``` *searching in Github for Documentation
+    - ```import dj-database-url``` in Setting.py(Project)
+    - Overide put in under default Django(sqlite) with ```DATABASES['default'] = dj_database_url.config(conn_max_age=600)``` 
+    - How to Overide :
+        * LOGIC ==> If database url available in EnvironmentVariable, Then Use DatabaseUrl 
+        * ========> Else Use default Django(sqlite)
+    - DATABASES = os.environ.get('nameVariable') # EnvironmentVariable 
+
+*** Setting is ready fo Deploy to PRODUCTION ***
+- We need prepare list Python dependency used by our apps
+- Create ```requirements.txt``` 
+- How to check depedency ```pip freeze```
+
