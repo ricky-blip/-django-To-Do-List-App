@@ -140,7 +140,7 @@ We need Call from Views.py(Todo List Application).
     - Status Uncheck(Pending) <-> Status Check(Not Pending) ``` todo.status = not todo.status ```
     - save ``` todo.save() ```
 
-======================================== DJANGO ADMIN ========================================
+======================== DJANGO ADMIN ========================
 
 ---Access Django Admin Project(Website)
 1. in urls.py(Website), we see ```url pattern``` there is url admin ```admin/```
@@ -164,7 +164,7 @@ We need Call from Views.py(Todo List Application).
     - in admin.py(Todo List Application), create class TodoAdmin ```class TodoAdmin(admin.ModelAdmin):``` and display column ```list_display = ('id','title','status')```
     - register column as parameter ```admin.site.register(Todo,TodoAdmin)```
 
-======================================== DEPLOY Apps ========================================
+======================== DEPLOY Apps ========================
 
 * Django is not for serve staticfiles
 
@@ -190,7 +190,7 @@ We have 2 Strategy how to deploy:
     - For local ```STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')``` this will be all staticfiles in all active application django will be copy to (/nameProject/staticfiles)
     - For Production ``` STATIC_ROOT = '/home/yourname/staticfiles' ```
 
-======================================== Django Setting in Production ========================================
+======================== Django Setting in Production ========================
 
 ```in setting.py Project(Website)```
 
