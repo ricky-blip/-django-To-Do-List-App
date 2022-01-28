@@ -237,6 +237,7 @@ Environment Variabel Example : in terminal ``` $variable=Value | $echo variable 
         *split(',') for separate between host (IpAddres,Domain)
 6. ```DATABASES```
     - We need change databases in Production to MySQL/PostgreSQL
+    - We need put in evironment variable ``` 'NAME' : os.path.join(BASE_DIR, 'db.sqlite3'), ```
     - Install ```pip install dj-database-url``` *searching in Github for Documentation
     - ```import dj-database-url``` in Setting.py(Project)
     - Overide put in under default Django(sqlite) with ```DATABASES['default'] = dj_database_url.config(conn_max_age=600)``` 
