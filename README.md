@@ -5,13 +5,14 @@ DOCS :
 ========== Setup Project & App ==========
 1. Make sure install Python
 2. Install PIP
-3. Create Virtual Environment
-4. install Package Django ```pip install django```
-5. Create Project ( **WEBSITE** ) ```django-admin startproject website```
-6. Check Django server 
-7. Running database migration
-8. Running Django Server ```./manage.py runserver```
-9. Create App ( TODO LIST ) ```./manage.py startapp todo```
+3. Install Virtual Environment ```apt-get install python3-venv```
+4. Create Virtual Environment with name (env) ```python3 -m venv env```
+5. install Package Django ```pip install django```
+6. Create Project ( **WEBSITE** ) ```django-admin startproject website```
+7. Check Django server 
+8. Running database migration
+9. Running Django Server ```./manage.py runserver```
+10. Create App ( TODO LIST ) ```./manage.py startapp todo```
 
 ========== Setting Urls & Views ==========
 
