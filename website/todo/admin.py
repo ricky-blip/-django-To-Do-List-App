@@ -8,4 +8,4 @@ class TodoAdmin(admin.ModelAdmin):
 
 # register link        
 admin.site.register(Todo,TodoAdmin)
-admin.site.site_url = "/todo" # meaning URL from page admin(view site) direct to apps(todo)
+admin.site.site_url = '..' # meaning URL from page admin(view site) direct to apps(todo)
